@@ -23,11 +23,11 @@
     @apply rounded-md pl-2 my-1
 }
 .signInBtn{
-    @apply border-2 rounded-md w-20 mx-auto mt-2 bg-white text-green-500 font-bold hover:bg-green-400 hover:text-white
+    @apply border-2 border-green-500 rounded-md w-20 mx-auto mt-2 bg-white text-green-500 font-bold hover:bg-green-400 hover:text-white
 }
 .footer{
     @apply flex my-4 space-x-2 justify-center
 }
 .signUpLink{
-    @apply text-blue-500 font-bold
+    @apply text-blue-600 font-bold
 }

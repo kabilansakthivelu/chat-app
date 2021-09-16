@@ -1,0 +1,30 @@
+.signUpModal{
+    @apply flex items-center justify-center min-h-screen
+}
+.signUpModalContent{
+    @apply w-72 sm:w-80 md:w-96 border-2 bg-green-300 rounded-xl p-4 mx-6 leading-loose
+}
+.appTitle{
+    @apply text-center text-xl md:text-2xl font-bold
+}
+.pageHeader{
+    @apply text-center text-lg my-3
+}
+.signUpForm{
+    @apply flex flex-col
+}
+.nameLabel, .emailLabel, .pwdLabel{
+    @apply text-lg
+}
+.nameInput, .emailInput, .pwdInput{
+    @apply rounded-md pl-2 my-1
+}
+.signUpBtn{
+    @apply border-2 border-green-500 rounded-md w-20 mx-auto mt-2 bg-white text-green-500 font-bold hover:bg-green-400 hover:text-white
+}
+.footer{
+    @apply text-center
+}
+.signInLink{
+    @apply text-blue-600 font-bold
+}

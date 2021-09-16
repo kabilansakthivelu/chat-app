@@ -13,14 +13,14 @@ const SignIn = () => {
             <p className="sectionDivider">or</p>
             <form className="signInForm">
                 <label htmlFor="emailId" className="emailLabel">Email</label>
-                <input type="email" name="emailId" id="emailId" className="emailInput"/>
+                <input required type="email" name="emailId" id="emailId" className="emailInput"/>
                 <label htmlFor="pwd" className="pwdLabel">Password</label>
-                <input type="password" name="pwd" id="pwd" className="pwdInput"/>
+                <input required type="password" name="pwd" id="pwd" className="pwdInput"/>
                 <button className="signInBtn">Sign In</button>
             </form>
             <div className="footer">
                 <p>New to Chat App?</p>
-                <Link to="/signUp" className="signUpLink">SignUp</Link>
+                <Link to="/signUp" className="signUpLink">Sign up</Link>
             </div>
         </div>
         </div>
