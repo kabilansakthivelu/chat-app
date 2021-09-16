@@ -2,6 +2,7 @@ import React from 'react';
 import {useAuthState} from 'react-firebase-hooks/auth';
 import {auth} from '../firebase';
 import SignIn from './SignIn/SignIn';
+import Header from './Header/Header';
 
 const Content = () => {
 
@@ -9,12 +10,7 @@ const Content = () => {
     
     return (
         <>
-        { user ? (
-            <div>
-                <h1>Content page</h1>
-                <button onClick={()=>auth.signOut()}>Sign out</button>
-                <p>{auth.currentUser.uid}</p>
-            </div>
+        { user ? (<Header/>
         ) : 
         <SignIn/>}
         </>

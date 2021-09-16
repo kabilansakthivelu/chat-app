@@ -15,6 +15,7 @@ const SignIn = () => {
 
     const history = useHistory();
 
+    //Google Authentication
     const googleAuth = async() =>{
         let provider = new firebase.auth.GoogleAuthProvider();
         await firebase.auth().signInWithPopup(provider);
@@ -22,6 +23,7 @@ const SignIn = () => {
         toast.success("Signed In successfully !!", { position: toast.POSITION.TOP_CENTER})
     }
 
+    //Sign In with Email and Password
     const signInBtn = async(e) =>{
         e.preventDefault();
         const email = refEmail.current.value;

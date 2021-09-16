@@ -1,0 +1,25 @@
+.header{
+    @apply w-full h-14 sm:h-16 md:h-20 bg-green-500 font-bold sm:text-lg md:text-xl flex justify-between items-center px-5 sm:px-7
+}
+.signOutBtn{
+    @apply cursor-pointer md:hidden
+}
+.signOutButton{
+    @apply hidden md:block md:font-normal md:cursor-pointer
+}
+.modalDescription{
+    @apply text-center
+}
+.modalButtons{
+    @apply flex items-center justify-center
+}
+.modalYesButton, .modalNoButton{
+    @apply border-2 border-green-500 bg-white rounded-xl w-10 h-8 mt-4 sm:mt-6 sm:w-14 sm:h-10 hover:bg-green-200
+}
+.modalYesButton{
+    @apply mr-2
+}
+.modalDescription, .modalYesButton, 
+.modalNoButton{
+    @apply sm:text-lg sm:mt-2 md:text-xl md:mt-4
+}

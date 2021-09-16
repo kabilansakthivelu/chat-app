@@ -23,7 +23,7 @@
     @apply border-2 border-green-500 rounded-md w-20 mx-auto mt-2 bg-white text-green-500 font-bold hover:bg-green-400 hover:text-white
 }
 .footer{
-    @apply text-center
+    @apply text-center text-sm sm:text-lg
 }
 .signInLink{
     @apply text-blue-600 font-bold

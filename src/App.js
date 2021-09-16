@@ -4,6 +4,9 @@ import SignUp from './Components/SignUp/SignUp';
 import Content from './Components/Content';
 import Error from './Components/Error';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Modal from 'react-modal';
+
+Modal.setAppElement("#root");
 
 export const ValuesContext = React.createContext();
 
