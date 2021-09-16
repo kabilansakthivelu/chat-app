@@ -4,6 +4,10 @@ import './SignIn.css';
 import {ValuesContext} from '../../App';
 import {FcGoogle} from 'react-icons/fc';
 import {Link, useHistory} from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 const SignIn = () => {
 
@@ -15,14 +19,23 @@ const SignIn = () => {
         let provider = new firebase.auth.GoogleAuthProvider();
         await firebase.auth().signInWithPopup(provider);
         history.push('/');
+        toast.success("Signed In successfully !!", { position: toast.POSITION.TOP_CENTER})
     }
 
     const signInBtn = async(e) =>{
         e.preventDefault();
         const email = refEmail.current.value;
         const password = refPassword.current.value;
+        try{
         await firebase.auth().signInWithEmailAndPassword(email,password);
         history.push('/');
+        toast.success("Signed In successfully !!", {position: toast.POSITION.TOP_CENTER})
+        }
+        catch(error){
+            const error1 = error.message.split(":");
+            const error2 = error1[1].split("(");
+            toast.error(error2[0], {position: toast.POSITION.TOP_CENTER})
+        }
     }
 
     return (

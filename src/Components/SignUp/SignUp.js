@@ -3,6 +3,9 @@ import './SignUp.css';
 import firebase from 'firebase/compat/app';
 import {Link, useHistory} from 'react-router-dom';
 import {ValuesContext} from '../../App';
+import {toast} from 'react-toastify';
+
+toast.configure();
 
 const SignUp = () => {
 
@@ -10,12 +13,20 @@ const SignUp = () => {
 
     const history = useHistory();
 
-    const signUpBtn = (e) =>{
+    const signUpBtn = async(e) =>{
         e.preventDefault();
         const email = refEmail.current.value;
         const password = refPassword.current.value;
-        firebase.auth().createUserWithEmailAndPassword(email,password);
+        try{
+        await firebase.auth().createUserWithEmailAndPassword(email,password);
         history.push('/');
+        toast.success("Account created successfully !!", {position: toast.POSITION.TOP_CENTER})
+        }
+        catch(error){
+            const error1 = error.message.split(":");
+            const error2 = error1[1].split("(");
+            toast.error(error2[0], {position: toast.POSITION.TOP_CENTER})
+        }
     }
 
     return (
@@ -29,7 +40,7 @@ const SignUp = () => {
                 <label htmlFor="emailId" className="emailLabel">Email</label>
                 <input required type="email" name="emailId" id="emailId" className="emailInput" ref={refEmail}/>
                 <label htmlFor="pwd" className="pwdLabel">Password</label>
-                <input required type="password" min="8" name="pwd" id="pwd" className="pwdInput" ref={refPassword}/>
+                <input required type="password" name="pwd" id="pwd" className="pwdInput" ref={refPassword}/>
                 <button className="signUpBtn">Sign Up</button>
             </form>
             <div className="footer">
