@@ -1,13 +1,20 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import SignIn from './Components/SignIn/SignIn';
 import SignUp from './Components/SignUp/SignUp';
 import Content from './Components/Content';
 import Error from './Components/Error';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
+export const ValuesContext = React.createContext();
+
 function App() {
+
+  const refEmail =useRef();
+  const refPassword = useRef();
+
   return (
     <Router>
+    <ValuesContext.Provider value={{refEmail, refPassword}}>
     <Switch>
     <Route exact path="/">
       <Content/>
@@ -22,6 +29,7 @@ function App() {
       <Error/>
     </Route>
     </Switch>
+     </ValuesContext.Provider>
     </Router>
   );
 }
