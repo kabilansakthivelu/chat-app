@@ -1,0 +1,18 @@
+.leftPanel{
+    @apply md:w-64 lg:w-80 xl:w-96
+}
+.chatRoom{
+    @apply flex m-2
+}
+.chatRoomIcon{
+    @apply w-14 h-14 rounded-full cursor-pointer
+}
+.chatRoomTitle{
+    @apply ml-3 mt-3 font-semibold text-lg
+}
+.iconModal{
+    @apply w-72 h-80 mx-auto mt-40 md:w-96 md:h-96
+}
+.modalImage{
+    @apply h-full 
+}

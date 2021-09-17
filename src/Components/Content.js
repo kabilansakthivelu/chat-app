@@ -3,6 +3,7 @@ import {useAuthState} from 'react-firebase-hooks/auth';
 import {auth} from '../firebase';
 import SignIn from './SignIn/SignIn';
 import Header from './Header/Header';
+import LeftPanel from './LeftPanel/LeftPanel'
 
 const Content = () => {
 
@@ -10,8 +11,14 @@ const Content = () => {
     
     return (
         <>
-        { user ? (<Header/>
-        ) : 
+        { user ? 
+        (
+        <>
+        <Header/>
+        <LeftPanel/>
+        </>
+        ) 
+        : 
         <SignIn/>}
         </>
     )
