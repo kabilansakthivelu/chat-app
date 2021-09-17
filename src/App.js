@@ -1,10 +1,11 @@
-import React, {useRef} from 'react';
+import React, {useRef, useEffect, useState} from 'react';
 import SignIn from './Components/SignIn/SignIn';
 import SignUp from './Components/SignUp/SignUp';
 import Content from './Components/Content';
 import Error from './Components/Error';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Modal from 'react-modal';
+import {db} from './firebase';
 
 Modal.setAppElement("#root");
 
@@ -12,12 +13,31 @@ export const ValuesContext = React.createContext();
 
 function App() {
 
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(()=>{
+    const chatRoomRef = db.collection('rooms');
+    chatRoomRef.onSnapshot(snapshot =>{
+    const arr = [];
+    snapshot.forEach((doc)=>{
+    const data = doc.data();
+    const obj = {
+        id: data.id,
+        title: data.name,
+        imageURL: data.imageURL,
+    }
+        arr.push(obj)
+    })
+    setRooms(arr);
+})
+},[])
+
   const refEmail =useRef();
   const refPassword = useRef();
 
   return (
     <Router>
-    <ValuesContext.Provider value={{refEmail, refPassword}}>
+    <ValuesContext.Provider value={{refEmail, refPassword, rooms}}>
     <Switch>
     <Route exact path="/">
       <Content/>

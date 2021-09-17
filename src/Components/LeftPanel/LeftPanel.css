@@ -1,4 +1,7 @@
 .leftPanel{
+    @apply mt-18 sm:mt-18 md:mt-20
+}
+.leftPanelContent{
     @apply md:w-64 lg:w-80 xl:w-96
 }
 .chatRoom{
