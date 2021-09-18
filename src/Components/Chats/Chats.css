@@ -1,0 +1,5 @@
+/* Main Content */
+
+.mainPanel{
+    @apply md:block float-right md:min-h-screen md:w-4/6 lg:w-3/4 
+}

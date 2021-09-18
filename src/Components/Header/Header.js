@@ -4,6 +4,7 @@ import {auth} from '../../firebase';
 import {FaSignOutAlt} from 'react-icons/fa';
 import {toast} from 'react-toastify';
 import Modal from 'react-modal';
+import {useHistory} from 'react-router-dom';
 
 toast.configure();
 
@@ -11,8 +12,11 @@ const Header = () => {
 
     const [showModal, setShowModal] = useState(false);
 
+    const history = useHistory();
+
     const signOutFn =()=>{
         auth.signOut();
+        history.push("/signin");
         toast.success("Signed Out successfully !!", {position: toast.POSITION.TOP_CENTER})
     }
 

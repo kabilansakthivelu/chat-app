@@ -2,6 +2,7 @@ import React, {useState, useContext} from 'react'
 import './LeftPanel.css';
 import {ValuesContext} from '../../App';
 import Modal from 'react-modal';
+import {Link} from 'react-router-dom'
 
 const LeftPanel = () => {
 
@@ -28,10 +29,12 @@ const LeftPanel = () => {
             {rooms.map((room)=>{
                 return(
                 <div key={room.id} className="leftPanelContent">
+                <Link to={`/chats/${room.title}`}>
                 <div className="chatRoom">
                 <img src={room.imageURL || noImage} alt="roomIcon" className="chatRoomIcon" onClick={()=>{groupIconSelected(room.imageURL)}}/>
                 <h1 className="chatRoomTitle">{room.title}</h1>
                 </div>
+                </Link>
                 <hr className="chatRoomDivider"/>
                 </div>)
             })}
