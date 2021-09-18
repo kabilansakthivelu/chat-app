@@ -28,15 +28,3 @@
 .modalImage{
     @apply h-full 
 }
-
-/* Main Content */
-
-.mainPanel{
-    @apply hidden md:block float-right md:min-h-screen md:w-4/6 lg:w-3/4 
-}
-.displayTextSection{
-    @apply md:min-h-screen flex flex-col justify-center items-center md:fixed md:w-4/6 lg:w-3/4 md:bg-image
-}
-.defaultPageTitleText, .defaultPageText{
-    @apply italic lg:text-xl font-bold mt-3
-}

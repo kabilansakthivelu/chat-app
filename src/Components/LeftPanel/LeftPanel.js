@@ -1,9 +1,9 @@
 import React, {useState, useContext} from 'react'
-import './Chats.css';
+import './LeftPanel.css';
 import {ValuesContext} from '../../App';
 import Modal from 'react-modal';
 
-const Chats = () => {
+const LeftPanel = () => {
 
     const {rooms} = useContext(ValuesContext);
 
@@ -37,15 +37,6 @@ const Chats = () => {
             })}
             </div>
 
-        {/* Main content */}
-
-            <div className="mainPanel">
-            <div className="displayTextSection">
-            <h1 className="defaultPageTitleText">Welcome to Chat App</h1>
-            <h1 className="defaultPageText">Click on the chat rooms available on the left to continue your chat</h1>
-            </div>
-            </div>
-
         {/* Image Open Modal */}
 
         <Modal isOpen={isImageSelected} onRequestClose={()=>{setIsImageSelected(false)}} className="iconModal">
@@ -56,4 +47,4 @@ const Chats = () => {
     )
 }
 
-export default Chats
+export default LeftPanel

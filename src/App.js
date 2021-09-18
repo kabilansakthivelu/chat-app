@@ -1,7 +1,7 @@
 import React, {useRef, useEffect, useState} from 'react';
 import SignIn from './Components/SignIn/SignIn';
 import SignUp from './Components/SignUp/SignUp';
-import Content from './Components/Content';
+import Home from './Components/Home/Home';
 import Error from './Components/Error';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Modal from 'react-modal';
@@ -40,7 +40,7 @@ function App() {
     <ValuesContext.Provider value={{refEmail, refPassword, rooms}}>
     <Switch>
     <Route exact path="/">
-      <Content/>
+      <Home/>
     </Route>
     <Route path="/signin">
       <SignIn/>
