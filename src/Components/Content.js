@@ -3,7 +3,7 @@ import {useAuthState} from 'react-firebase-hooks/auth';
 import {auth} from '../firebase';
 import SignIn from './SignIn/SignIn';
 import Header from './Header/Header';
-import LeftPanel from './LeftPanel/LeftPanel'
+import Chats from './Chats/Chats'
 
 const Content = () => {
 
@@ -15,7 +15,7 @@ const Content = () => {
         (
         <>
         <Header/>
-        <LeftPanel/>
+        <Chats/>
         </>
         ) 
         : 
