@@ -1,5 +1,3 @@
-/* Main Content */
-
-.mainPanel{
-    @apply md:block float-right md:min-h-screen md:w-4/6 lg:w-3/4 
+.chatsSection{
+    @apply mt-18 text-yellow-500
 }

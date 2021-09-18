@@ -16,6 +16,9 @@
 .chatRoomIcon{
     @apply w-12 h-12 rounded-full cursor-pointer
 }
+.chatTitleSection{
+    @apply flex-grow
+}
 .chatRoomTitle{
     @apply ml-3 mt-3 font-semibold text-base
 }

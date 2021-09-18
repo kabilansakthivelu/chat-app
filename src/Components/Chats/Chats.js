@@ -7,7 +7,17 @@ import LeftPanel from '../LeftPanel/LeftPanel';
 import {useParams} from 'react-router-dom';
 import './Chats.css';
 
-const Home = () => {
+export const ChatsSection = () =>{
+
+    return(
+        <div className="chatsSection">
+        <h1>Hello world</h1>
+        <p>Passed</p>
+        </div>
+    )
+}
+
+const Chats = () => {
 
     const [user] = useAuthState(auth);
 
@@ -22,7 +32,7 @@ const Home = () => {
             setIsMobileView(true)
         }
     }
-
+    
     useEffect(()=>{
         checkSize();
         window.addEventListener('resize', checkSize);
@@ -37,21 +47,13 @@ const Home = () => {
         ( isMobileView ? 
         (<>
         <Header/>
-        {/* Main content */}
-        <div className="chatsSection">
-        <h1 className="mt-14">Hello world</h1>
-        <p className="mt-20">Passed</p>
-        </div>
+        <ChatsSection/>
         </>)
          : 
         (<>
         <Header/>
         <LeftPanel/>
-        {/* Main content */}
-            <div className="chatsSection">
-            <h1>Hello world</h1>
-            <p>Passed</p>
-            </div>
+        <ChatsSection/>
         </>)
         ) 
         : 
@@ -60,4 +62,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Chats

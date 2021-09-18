@@ -29,12 +29,14 @@ const LeftPanel = () => {
             {rooms.map((room)=>{
                 return(
                 <div key={room.id} className="leftPanelContent">
-                <Link to={`/chats/${room.title}`}>
                 <div className="chatRoom">
                 <img src={room.imageURL || noImage} alt="roomIcon" className="chatRoomIcon" onClick={()=>{groupIconSelected(room.imageURL)}}/>
+                <div className="chatTitleSection">
+                 <Link to={`/chats/${room.title}`}>
                 <h1 className="chatRoomTitle">{room.title}</h1>
-                </div>
                 </Link>
+                </div>
+                </div>
                 <hr className="chatRoomDivider"/>
                 </div>)
             })}

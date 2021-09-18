@@ -23,7 +23,7 @@ const Header = () => {
     return (
         <>
         <div className="header">
-        <h1 className="header-title">Chat App</h1>
+        <h1 className="header-title" onClick={()=>{history.push("/")}}>Chat App</h1>
         <FaSignOutAlt className="signOutBtn" onClick={()=>{setShowModal(true)}}/>
         <span className="signOutButton" onClick={()=>{setShowModal(true)}}>Sign Out</span>
         </div>
