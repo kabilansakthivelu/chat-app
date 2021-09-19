@@ -17,6 +17,10 @@ const ChatsSection = () =>{
 
     const [chatRoomId, setChatRoomId] = useState();
 
+    const [username, setUsername] = useState();
+
+    // const [selectedRoomContent, setSelectedRoomContent] = useState();
+
     useEffect(()=>{
     const roomsRef = db.collection ('rooms');
     roomsRef.onSnapshot((snapshot)=>{
@@ -27,6 +31,7 @@ const ChatsSection = () =>{
         const selectedRoom = arr.find((item)=>{
             return item.name === title;
         })
+        // setSelectedRoomContent(selectedRoom);
         test(selectedRoom.id);
         setChatRoomId(selectedRoom.id);
         return(()=>{
@@ -50,25 +55,37 @@ const ChatsSection = () =>{
 
     const chatSend = (e) =>{
         e.preventDefault();
+        // db.collection('users').doc(auth.currentUser.uid).get().then((snapshot)=>{
+        //     const userdetails = snapshot.data();
+        //     setUsername(userdetails.name);
+        // });
         const text = messageRef.current.value;
         const time = (new Date).getTime().toString();
+        // let fullName = [];
+        // fullName = auth.currentUser.displayName ? auth.currentUser.displayName.split(" ") : fullName.push(username)
         const fullName = auth.currentUser.displayName.split(" ");
         const firstName = fullName[0];
+        const uid = auth.currentUser.uid;
         db.collection('rooms').doc(chatRoomId).collection('messages').add({
             id: time,
             time,
             text,
+            uid,
             user: firstName,
         })
         messageRef.current.value = '';
     }
+
+        // console.log(selectedRoomContent);
+
     
     return(
         <div className="chatsSection">
         <div className="roomHeader">
         <BsArrowLeftShort className="arrowIcon" onClick={()=>{history.push("/")}}/>
         <FaUserCircle className="roomIcon"/>
-        <h1 className="roomTitle">Chat Room</h1>
+        {/* <img src={selectedRoomContent.imageURL} alt="" className="roomIcon"/> */}
+        <h1 className="roomTitle">{title}</h1>
         </div>
         <div className="chats">
         {chatsToBeDisplayed.map((chat)=>{
