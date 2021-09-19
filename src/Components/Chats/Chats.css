@@ -16,3 +16,12 @@
 .chats{
     @apply pt-14 md:pt-16
 }
+.roomFooter{
+    @apply h-12 md:h-14 fixed bottom-0 w-full bg-white flex items-center
+}
+.chatInput{
+    @apply h-10 w-64 md:w-3/5 pl-3 md:text-lg outline-none
+}
+.chatSendBtn{
+    @apply  text-blue-500 fixed right-5 bottom-4 md:text-lg
+}

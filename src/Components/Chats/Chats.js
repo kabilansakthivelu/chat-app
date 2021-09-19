@@ -5,7 +5,8 @@ import SignIn from '../SignIn/SignIn';
 import Header from '../Header/Header';
 import LeftPanel from '../LeftPanel/LeftPanel';
 import {useParams, useHistory} from 'react-router-dom';
-import {BsArrowLeftShort} from 'react-icons/bs'
+import {BsArrowLeftShort} from 'react-icons/bs';
+import {IoSend} from 'react-icons/io5';
 import './Chats.css';
 
 import {FaUserCircle} from 'react-icons/fa';
@@ -13,6 +14,11 @@ import {FaUserCircle} from 'react-icons/fa';
 export const ChatsSection = () =>{
 
     const history = useHistory();
+
+    const chatSend = (e) =>{
+        e.preventDefault();
+        console.log("hiiii passed");
+    }
     
     return(
         <div className="chatsSection">
@@ -21,7 +27,13 @@ export const ChatsSection = () =>{
         <FaUserCircle className="roomIcon"/>
         <h1 className="roomTitle">Chat Room</h1>
         </div>
-        <p className="chats">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse ducimus non ab doloremque distinctio? Doloribus vero iure modi ullam sequi, delectus ducimus, molestias labore consequatur facere tenetur aliquid incidunt sunt aspernatur perspiciatis error ea cupiditate eligendi! Dignissimos maxime repellat, laboriosam corporis asperiores officiis nisi eos eius esse numquam omnis ab?</p>
+        <p className="chats"></p>
+        <form className="roomFooter">
+        <input type="text" placeholder="Type your message..." className="chatInput"/>
+        <button onClick={chatSend}>
+        <IoSend className="chatSendBtn"/>
+        </button>
+        </form>
         </div>
     )
 }
