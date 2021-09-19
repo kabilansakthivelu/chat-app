@@ -2,7 +2,7 @@ import React, {useRef, useEffect, useState} from 'react';
 import SignIn from './Components/SignIn/SignIn';
 import SignUp from './Components/SignUp/SignUp';
 import Home from './Components/Home/Home';
-import Chats from './Components/Chats/Chats';
+import Chats from './Components/Chats';
 import Error from './Components/Error';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Modal from 'react-modal';
