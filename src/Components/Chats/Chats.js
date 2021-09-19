@@ -4,15 +4,24 @@ import {auth} from '../../firebase';
 import SignIn from '../SignIn/SignIn';
 import Header from '../Header/Header';
 import LeftPanel from '../LeftPanel/LeftPanel';
-import {useParams} from 'react-router-dom';
+import {useParams, useHistory} from 'react-router-dom';
+import {BsArrowLeftShort} from 'react-icons/bs'
 import './Chats.css';
+
+import {FaUserCircle} from 'react-icons/fa';
 
 export const ChatsSection = () =>{
 
+    const history = useHistory();
+    
     return(
         <div className="chatsSection">
-        <h1>Hello world</h1>
-        <p>Passed</p>
+        <div className="roomHeader">
+        <BsArrowLeftShort className="arrowIcon" onClick={()=>{history.push("/")}}/>
+        <FaUserCircle className="roomIcon"/>
+        <h1 className="roomTitle">Chat Room</h1>
+        </div>
+        <p className="chats">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Esse ducimus non ab doloremque distinctio? Doloribus vero iure modi ullam sequi, delectus ducimus, molestias labore consequatur facere tenetur aliquid incidunt sunt aspernatur perspiciatis error ea cupiditate eligendi! Dignissimos maxime repellat, laboriosam corporis asperiores officiis nisi eos eius esse numquam omnis ab?</p>
         </div>
     )
 }

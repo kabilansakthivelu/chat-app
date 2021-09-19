@@ -1,3 +1,18 @@
 .chatsSection{
-    @apply mt-18 text-yellow-500
+    @apply mt-16 md:mt-0 md:float-right min-h-screen md:w-4/6 lg:w-3/4 bg-image
+}
+.roomHeader{
+    @apply h-14 md:h-16 fixed w-full bg-white flex items-center
+}
+.arrowIcon{
+    @apply text-3xl md:hidden
+}
+.roomIcon{
+    @apply text-4xl ml-3 md:text-5xl
+}
+.roomTitle{
+    @apply ml-3 font-bold text-lg md:text-xl
+}
+.chats{
+    @apply pt-14 md:pt-16
 }
