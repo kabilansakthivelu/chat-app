@@ -28,14 +28,32 @@
 .singleChat{
     @apply border-2 bg-blue-300 w-max p-2 rounded-lg md:rounded-xl
 }
+.chatAreaHeader{
+    @apply flex justify-between
+}
+.chatAreaIcon{
+    @apply text-sm md:text-base cursor-pointer
+}
 .chatAreaUser{
     @apply text-xs md:text-sm font-bold
 }
 .chatAreaMessage{
-    @apply my-2 md:text-base
+    @apply my-1 md:text-base
 }
 .chatAreaTime{
     @apply text-xs md:text-sm
+}
+.charAreaOptions{
+    @apply hidden my-2
+}
+.scrollDiv{
+    @apply h-22 md:h-24
+}
+.editChatBtn{
+    @apply text-xs md:text-sm font-bold border-2 rounded-xl w-16 bg-white hover:bg-blue-400 hover:text-white
+}
+.deleteChatBtn{
+    @apply text-xs md:text-sm font-bold ml-2 border-2 rounded-xl w-16 bg-white hover:bg-blue-400 hover:text-white
 }
 .iconModal{
     @apply w-72 h-80 mx-auto mt-40 md:w-96 md:h-96

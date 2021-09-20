@@ -3,6 +3,7 @@ import {auth, db} from '../../firebase';
 import {useParams, useHistory} from 'react-router-dom';
 import {BsArrowLeftShort} from 'react-icons/bs';
 import {IoSend} from 'react-icons/io5';
+import {AiFillCaretRight} from 'react-icons/ai';
 import {ValuesContext} from '../../App';
 import Modal from 'react-modal';
 import './ChatsSection.css';
@@ -22,6 +23,8 @@ const ChatsSection = () =>{
     const [username, setUsername] = useState();
 
     const [selectedRoomContent, setSelectedRoomContent] = useState({});
+
+    let scrolling = document.getElementById("scrollDiv");
 
     useEffect(()=>{
     const roomsRef = db.collection ('rooms');
@@ -45,15 +48,14 @@ const ChatsSection = () =>{
             const userdetails = snapshot.data();
             setUsername(userdetails.name);
         });
-
     },[title])
 
     const test = (roomID) =>{
-    const chatsRef = db.collection('rooms').doc(roomID).collection('messages');
+    const chatsRef = db.collection('rooms').doc(roomID).collection('messages').orderBy('time');
     chatsRef.onSnapshot((snapshot)=>{
         const arr1 = [];
         snapshot.forEach((doc)=>{
-            arr1.push({...doc.data()});
+            arr1.push({...doc.data(), docId:doc.id});
         })
         setChatsToBeDisplayed(arr1);
     })
@@ -75,6 +77,22 @@ const ChatsSection = () =>{
             user: fullName,
         })
         messageRef.current.value = '';
+        scrolling.scrollIntoView();
+    }
+
+    const showOptions = (id) =>{
+         if(document.getElementById(id).style.display === "none" || document.getElementById(id).style.display ==="")
+        {
+        document.getElementById(id).style.display = "inherit"
+        }
+        else
+        {
+            document.getElementById(id).style.display = "none";
+        }
+    }
+
+    const deleteChat = (id) => {
+        db.collection('rooms').doc(chatRoomId).collection('messages').doc(id).delete();
     }
     
     return(
@@ -102,19 +120,29 @@ const ChatsSection = () =>{
                 amOrPm = "AM";
             }
             const time = setTime[2] +" "+ setTime[1] +" "+ setTime[3] + "  " + time1[0]+":"+time1[1]+":"+time1[2] + " " + amOrPm;
+            
             return(
                 <div key=
                 {chat.id} className="singleChat">
+                <div className="chatAreaHeader">
                 <h1 className="chatAreaUser">{chat.user}</h1>
+                <AiFillCaretRight className="chatAreaIcon" onClick={()=>{showOptions(chat.id)}}/>
+                </div>
                 <h1 className="chatAreaMessage">{chat.text}</h1>
                 <h1 className="chatAreaTime">{time}</h1>
+                <div className="charAreaOptions" id={chat.id}>
+                <button className="editChatBtn">Edit</button>
+                <button className="deleteChatBtn" onClick={()=>{deleteChat(chat.docId)}}>Delete</button>
+                </div>
                 </div>
             )
         })}
         </div>
-        <form className="roomFooter">
-        <input type="text" placeholder="Type your message..." className="chatInput" ref={messageRef}/>
-        <button onClick={chatSend}>
+        <div id="scrollDiv" className="scrollDiv">
+        </div>
+        <form className="roomFooter" onSubmit={chatSend}>
+        <input required type="text" placeholder="Type your message..." className="chatInput" ref={messageRef}/>
+        <button>
         <IoSend className="chatSendBtn"/>
         </button>
         </form>
