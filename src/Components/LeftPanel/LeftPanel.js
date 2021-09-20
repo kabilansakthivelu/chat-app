@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useContext} from 'react'
 import './LeftPanel.css';
 import {ValuesContext} from '../../App';
 import Modal from 'react-modal';
@@ -6,19 +6,7 @@ import {Link} from 'react-router-dom'
 
 const LeftPanel = () => {
 
-    const {rooms} = useContext(ValuesContext);
-
-    const noImage = "https://www.searchpng.com/wp-content/uploads/2019/02/User-Icon-PNG.png";
-
-    const [isImageSelected, setIsImageSelected] = useState(false);
-
-    const [modalImage, setModalImage] = useState("");
-
-    const groupIconSelected = (url) =>{
-        let image = url ? url : noImage;
-        setIsImageSelected(true);
-        setModalImage(image);
-    }
+    const {rooms, groupIconSelected, modalImage, isImageSelected, setIsImageSelected, noImage} = useContext(ValuesContext);
 
     return (
         <div className="chatsPage">

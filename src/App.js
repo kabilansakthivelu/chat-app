@@ -36,9 +36,21 @@ function App() {
   const refEmail =useRef();
   const refPassword = useRef();
 
+  const [isImageSelected, setIsImageSelected] = useState(false);
+
+  const [modalImage, setModalImage] = useState("");
+
+  const noImage = "https://www.searchpng.com/wp-content/uploads/2019/02/User-Icon-PNG.png";
+
+  const groupIconSelected = (url) =>{
+        let image = url ? url : noImage;
+        setIsImageSelected(true);
+        setModalImage(image);
+    }
+
   return (
     <Router>
-    <ValuesContext.Provider value={{refEmail, refPassword, rooms}}>
+    <ValuesContext.Provider value={{refEmail, refPassword, rooms, groupIconSelected, modalImage, isImageSelected, setIsImageSelected, noImage}}>
     <Switch>
     <Route exact path="/">
       <Home/>

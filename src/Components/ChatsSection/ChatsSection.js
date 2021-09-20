@@ -1,13 +1,15 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import {auth, db} from '../../firebase';
 import {useParams, useHistory} from 'react-router-dom';
 import {BsArrowLeftShort} from 'react-icons/bs';
 import {IoSend} from 'react-icons/io5';
+import {ValuesContext} from '../../App';
+import Modal from 'react-modal';
 import './ChatsSection.css';
 
-import {FaUserCircle} from 'react-icons/fa';
-
 const ChatsSection = () =>{
+
+    const {groupIconSelected, modalImage, isImageSelected, setIsImageSelected, noImage} = useContext(ValuesContext);
 
     const {title} = useParams();
 
@@ -19,10 +21,11 @@ const ChatsSection = () =>{
 
     const [username, setUsername] = useState();
 
-    // const [selectedRoomContent, setSelectedRoomContent] = useState();
+    const [selectedRoomContent, setSelectedRoomContent] = useState({});
 
     useEffect(()=>{
     const roomsRef = db.collection ('rooms');
+    setSelectedRoomContent({});
     roomsRef.onSnapshot((snapshot)=>{
         const arr =[];
         snapshot.forEach((doc)=>{
@@ -31,7 +34,7 @@ const ChatsSection = () =>{
         const selectedRoom = arr.find((item)=>{
             return item.name === title;
         })
-        // setSelectedRoomContent(selectedRoom);
+        setSelectedRoomContent(selectedRoom);
         test(selectedRoom.id);
         setChatRoomId(selectedRoom.id);
         return(()=>{
@@ -83,8 +86,7 @@ const ChatsSection = () =>{
         <div className="chatsSection">
         <div className="roomHeader">
         <BsArrowLeftShort className="arrowIcon" onClick={()=>{history.push("/")}}/>
-        <FaUserCircle className="roomIcon"/>
-        {/* <img src={selectedRoomContent.imageURL} alt="" className="roomIcon"/> */}
+        <img src={selectedRoomContent.imageURL || noImage} alt="" className="roomIcon" onClick={()=>{groupIconSelected(selectedRoomContent.imageURL)}}/>
         <h1 className="roomTitle">{title}</h1>
         </div>
         <div className="chats">
@@ -121,6 +123,11 @@ const ChatsSection = () =>{
         <IoSend className="chatSendBtn"/>
         </button>
         </form>
+
+        <Modal isOpen={isImageSelected} onRequestClose={()=>{setIsImageSelected(false)}} className="iconModal">
+        <img src={modalImage} alt="groupIcon" className="modalImage"/>
+        </Modal>
+
         </div>
     )
 }
