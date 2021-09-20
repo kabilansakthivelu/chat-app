@@ -41,6 +41,11 @@ const ChatsSection = () =>{
             setChatsToBeDisplayed([]);
         })
     })
+    auth.currentUser.displayName || db.collection('users').doc(auth.currentUser.uid).get().then((snapshot)=>{
+            const userdetails = snapshot.data();
+            setUsername(userdetails.name);
+        });
+
     },[title])
 
     const test = (roomID) =>{
@@ -58,29 +63,19 @@ const ChatsSection = () =>{
 
     const chatSend = (e) =>{
         e.preventDefault();
-        // db.collection('users').doc(auth.currentUser.uid).get().then((snapshot)=>{
-        //     const userdetails = snapshot.data();
-        //     setUsername(userdetails.name);
-        // });
         const text = messageRef.current.value;
         const time = (new Date).getTime().toString();
-        // let fullName = [];
-        // fullName = auth.currentUser.displayName ? auth.currentUser.displayName.split(" ") : fullName.push(username)
-        const fullName = auth.currentUser.displayName.split(" ");
-        const firstName = fullName[0];
+        const fullName = auth.currentUser.displayName ? auth.currentUser.displayName.split(" ")[0] : username;
         const uid = auth.currentUser.uid;
         db.collection('rooms').doc(chatRoomId).collection('messages').add({
             id: time,
             time,
             text,
             uid,
-            user: firstName,
+            user: fullName,
         })
         messageRef.current.value = '';
     }
-
-        // console.log(selectedRoomContent);
-
     
     return(
         <div className="chatsSection">
