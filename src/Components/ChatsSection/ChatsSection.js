@@ -55,7 +55,7 @@ const ChatsSection = () =>{
     chatsRef.onSnapshot((snapshot)=>{
         const arr1 = [];
         snapshot.forEach((doc)=>{
-            arr1.push({...doc.data(), docId:doc.id});
+            arr1.push({...doc.data(), docId:doc.id, inputId:arr1.length, textId:arr1.length+"a"});
         })
         setChatsToBeDisplayed(arr1);
     })
@@ -80,10 +80,14 @@ const ChatsSection = () =>{
         scrolling.scrollIntoView();
     }
 
-    const showOptions = (id) =>{
+    const showOptions = (id, docId, inputId, textId) =>{
          if(document.getElementById(id).style.display === "none" || document.getElementById(id).style.display ==="")
         {
-        document.getElementById(id).style.display = "inherit"
+        document.getElementById(id).style.display = "inherit";
+        document.getElementById(docId).style.display = "none";
+        document.getElementById(inputId).style.display = "none";
+        document.getElementById(textId).style.display = "inherit";
+
         }
         else
         {
@@ -94,7 +98,36 @@ const ChatsSection = () =>{
     const deleteChat = (id) => {
         db.collection('rooms').doc(chatRoomId).collection('messages').doc(id).delete();
     }
+
+    const editChat = async(id, docId, inputId, textId, text) => {
+        document.getElementById(id).style.display = "none";
+        document.getElementById(docId).style.display = "inherit";
+        document.getElementById(inputId).style.display = "inherit";
+        document.getElementById(textId).style.display = "none";
+        document.getElementById(inputId).value = text;
+    }
     
+   const closeEditChat = (docId, inputId, textId)=>{
+       document.getElementById(docId).style.display = "none";
+       document.getElementById(inputId).style.display = "none";
+       document.getElementById(textId).style.display = "inherit";
+   } 
+
+   const saveChanges = (inputId, id, time, user, docId, textId) =>{
+        const text = document.getElementById(inputId).value;
+        const uid = auth.currentUser.uid;
+        db.collection('rooms').doc(chatRoomId).collection('messages').doc(id).set({
+            id: time,
+            time,
+            text,
+            uid,
+            user,
+       })
+       document.getElementById(docId).style.display = "none";
+       document.getElementById(inputId).style.display = "none";
+       document.getElementById(textId).style.display = "inherit";
+   }
+
     return(
         <div className="chatsSection">
         <div className="roomHeader">
@@ -126,13 +159,27 @@ const ChatsSection = () =>{
                 {chat.id} className="singleChat">
                 <div className="chatAreaHeader">
                 <h1 className="chatAreaUser">{chat.user}</h1>
-                <AiFillCaretRight className="chatAreaIcon" onClick={()=>{showOptions(chat.id)}}/>
+                <AiFillCaretRight className="chatAreaIcon" onClick={()=>{showOptions(chat.id, chat.docId, chat.inputId, chat.textId)}}/>
                 </div>
-                <h1 className="chatAreaMessage">{chat.text}</h1>
+                <input type="text" className="editChatInput" id={chat.inputId}/>
+                <h1 className="chatAreaMessage" id={chat.textId}>{chat.text}</h1>
                 <h1 className="chatAreaTime">{time}</h1>
+
+                {/* More Options in Chat */}
+
                 <div className="charAreaOptions" id={chat.id}>
-                <button className="editChatBtn">Edit</button>
+                <button className="editChatBtn" 
+                onClick=
+                {()=>{editChat(chat.id, chat.docId, chat.inputId, chat.textId, chat.text)}}
+                >Edit</button>
                 <button className="deleteChatBtn" onClick={()=>{deleteChat(chat.docId)}}>Delete</button>
+                </div>
+
+                {/* Edit Options in chat */}
+
+                <div className="chatAreaSaveOptions" id={chat.docId}>
+                <button className="editChatBtn" onClick={()=>{saveChanges(chat.inputId, chat.docId, chat.time, chat.user, chat.docId, chat.textId)}}>Save</button>
+                <button className="deleteChatBtn" onClick={()=>{closeEditChat(chat.docId, chat.inputId, chat.textId)}}>Close</button>
                 </div>
                 </div>
             )

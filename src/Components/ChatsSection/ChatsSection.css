@@ -46,6 +46,9 @@
 .charAreaOptions{
     @apply hidden my-2
 }
+.chatAreaSaveOptions{
+    @apply hidden my-2
+}
 .scrollDiv{
     @apply h-22 md:h-24
 }
@@ -54,6 +57,9 @@
 }
 .deleteChatBtn{
     @apply text-xs md:text-sm font-bold ml-2 border-2 rounded-xl w-16 bg-white hover:bg-blue-400 hover:text-white
+}
+.editChatInput{
+    @apply w-max outline-none hidden my-2 pl-2
 }
 .iconModal{
     @apply w-72 h-80 mx-auto mt-40 md:w-96 md:h-96
