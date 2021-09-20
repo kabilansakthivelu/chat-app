@@ -89,10 +89,28 @@ const ChatsSection = () =>{
         </div>
         <div className="chats">
         {chatsToBeDisplayed.map((chat)=>{
+            const initialTime = parseInt(chat.time);
+            const getTime = new Date(initialTime).toString();
+            const setTime = getTime.split(" ");
+            const time1 = setTime[4].split(":");
+            let amOrPm;
+            if(time1[0] > 12){
+                let hours = time1[0] - 12;
+                time1[0] = hours;
+                if(time1[0] < 10){
+                    time1[0] = "0"+time1[0];
+                }
+                amOrPm = "PM";
+            }else{
+                amOrPm = "AM";
+            }
+            const time = setTime[2] +" "+ setTime[1] +" "+ setTime[3] + "  " + time1[0]+":"+time1[1]+":"+time1[2] + " " + amOrPm;
             return(
                 <div key=
-                {chat.id}>
-                <h1>{chat.text}</h1>
+                {chat.id} className="singleChat">
+                <h1 className="chatAreaUser">{chat.user}</h1>
+                <h1 className="chatAreaMessage">{chat.text}</h1>
+                <h1 className="chatAreaTime">{time}</h1>
                 </div>
             )
         })}
