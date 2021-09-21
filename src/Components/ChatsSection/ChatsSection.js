@@ -24,8 +24,6 @@ const ChatsSection = () =>{
 
     const [selectedRoomContent, setSelectedRoomContent] = useState({});
 
-    let scrolling = document.getElementById("scrollDiv");
-
     useEffect(()=>{
     const roomsRef = db.collection ('rooms');
     setSelectedRoomContent({});
@@ -77,7 +75,6 @@ const ChatsSection = () =>{
             user: fullName,
         })
         messageRef.current.value = '';
-        scrolling.scrollIntoView();
     }
 
     const showOptions = (id, docId, inputId, textId) =>{
@@ -199,8 +196,6 @@ const ChatsSection = () =>{
                 </div>
             )
         })}
-        </div>
-        <div id="scrollDiv" className="scrollDiv">
         </div>
         <form className="roomFooter" onSubmit={chatSend}>
         <input required type="text" placeholder="Type your message..." className="chatInput" ref={messageRef}/>

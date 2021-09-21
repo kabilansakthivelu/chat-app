@@ -2,10 +2,10 @@
 /* Left Panel area */
 
 .chatsPage{
-    @apply mt-18
+    @apply mt-18 
 }
 .leftPanel{
-    @apply  md:float-left md:w-2/6 lg:w-1/4 border-r-2
+    @apply  md:float-left md:w-2/6 lg:w-1/4 border-r-2 md:h-screen md:overflow-y-scroll
 }
 .leftPanelContent{
     @apply w-full
