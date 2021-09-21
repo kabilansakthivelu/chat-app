@@ -153,13 +153,28 @@ const ChatsSection = () =>{
                 amOrPm = "AM";
             }
             const time = setTime[2] +" "+ setTime[1] +" "+ setTime[3] + "  " + time1[0]+":"+time1[1]+":"+time1[2] + " " + amOrPm;
+
+            let divName="";
+            let userSent="";
+            let chatAreaIconEnable ="";
+
+            if(chat.uid === auth.currentUser.uid){
+               divName = "singleChatSent";
+               userSent = "You";
+               chatAreaIconEnable = "enabled";
+            }
+            else{
+               divName = "singleChatReceived";
+               userSent = chat.user;
+               chatAreaIconEnable = "disabled";
+            }
             
             return(
                 <div key=
-                {chat.id} className="singleChat">
+                {chat.id} className={divName}>
                 <div className="chatAreaHeader">
-                <h1 className="chatAreaUser">{chat.user}</h1>
-                <AiFillCaretRight className="chatAreaIcon" onClick={()=>{showOptions(chat.id, chat.docId, chat.inputId, chat.textId)}}/>
+                <h1 className="chatAreaUser">{userSent}</h1>
+                <AiFillCaretRight className={chatAreaIconEnable} onClick={()=>{showOptions(chat.id, chat.docId, chat.inputId, chat.textId)}}/>
                 </div>
                 <input type="text" className="editChatInput" id={chat.inputId}/>
                 <h1 className="chatAreaMessage" id={chat.textId}>{chat.text}</h1>
@@ -179,7 +194,7 @@ const ChatsSection = () =>{
 
                 <div className="chatAreaSaveOptions" id={chat.docId}>
                 <button className="editChatBtn" onClick={()=>{saveChanges(chat.inputId, chat.docId, chat.time, chat.user, chat.docId, chat.textId)}}>Save</button>
-                <button className="deleteChatBtn" onClick={()=>{closeEditChat(chat.docId, chat.inputId, chat.textId)}}>Close</button>
+                <button className="deleteChatBtn" onClick={()=>{closeEditChat(chat.docId, chat.inputId, chat.textId)}}>Cancel</button>
                 </div>
                 </div>
             )

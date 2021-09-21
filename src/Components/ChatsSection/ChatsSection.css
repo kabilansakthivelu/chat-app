@@ -14,7 +14,7 @@
     @apply ml-3 font-bold text-lg md:text-xl
 }
 .chats{
-    @apply pt-14 md:pt-16 pb-12 md:pb-14
+    @apply pt-14 md:pt-16 pb-12 md:pb-14 flex flex-col
 }
 .roomFooter{
     @apply h-12 md:h-14 fixed bottom-0 w-full bg-white flex items-center
@@ -25,14 +25,20 @@
 .chatSendBtn{
     @apply  text-blue-500 fixed right-5 bottom-4 md:text-lg
 }
-.singleChat{
+.singleChatReceived{
     @apply border-2 bg-blue-300 w-max p-2 rounded-lg md:rounded-xl
+}
+.singleChatSent{
+    @apply border-2 bg-blue-300 w-max p-2 rounded-lg md:rounded-xl self-end
 }
 .chatAreaHeader{
     @apply flex justify-between
 }
-.chatAreaIcon{
+.enabled{
     @apply text-sm md:text-base cursor-pointer
+}
+.disabled{
+    @apply hidden
 }
 .chatAreaUser{
     @apply text-xs md:text-sm font-bold
