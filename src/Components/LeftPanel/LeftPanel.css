@@ -26,7 +26,7 @@
 /* Modal */
 
 .iconModal{
-    @apply w-72 h-80 mx-auto mt-40 md:w-96 md:h-96
+    @apply w-72 h-80 mx-auto mt-28 md:mt-40 md:w-96 md:h-96
 }
 .modalImage{
     @apply h-full

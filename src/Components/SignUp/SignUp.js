@@ -21,6 +21,9 @@ const SignUp = () => {
         const email = refEmail.current.value;
         const password = refPassword.current.value;
         const username = usernameRef.current.value;
+        if(username[0]===" "){
+            toast.error("Username should not start with 'SPACE'. Enter a valid username", {position: toast.POSITION.TOP_CENTER})
+        }else{
         try{
         await firebase.auth().createUserWithEmailAndPassword(email,password);
         history.push('/');
@@ -33,6 +36,7 @@ const SignUp = () => {
             const error1 = error.message.split(":");
             const error2 = error1[1].split("(");
             toast.error(error2[0], {position: toast.POSITION.TOP_CENTER})
+        }
         }
     }
 
