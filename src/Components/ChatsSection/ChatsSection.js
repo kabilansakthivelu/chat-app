@@ -141,7 +141,7 @@ const ChatsSection = () =>{
         </div>
         <div className="chats">
         <ReactScrollableFeed>
-        <div className="flex flex-col">
+        <div className="scrollableDiv">
         {chatsToBeDisplayed.map((chat)=>{
             const initialTime = parseInt(chat.time);
             const getTime = new Date(initialTime).toString();
