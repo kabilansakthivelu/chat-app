@@ -14,7 +14,7 @@
     @apply ml-3 font-bold text-lg md:text-xl
 }
 .chats{
-    @apply pt-14 md:pt-16 pb-12 md:pb-14 flex flex-col px-1 md:px-2 md:h-screen md:overflow-y-scroll
+    @apply pt-14 md:pt-16 pb-12 md:pb-14 px-1 md:px-2 h-screen overflow-y-scroll
 }
 .roomFooter{
     @apply h-12 md:h-14 fixed bottom-0 w-full bg-white flex items-center
@@ -69,4 +69,7 @@
 }
 .modalImage{
     @apply h-full
+}
+.scrollableDiv{
+    @apply flex flex-col
 }

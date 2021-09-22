@@ -6,8 +6,11 @@ import {IoSend} from 'react-icons/io5';
 import {AiFillCaretRight} from 'react-icons/ai';
 import {ValuesContext} from '../../App';
 import Modal from 'react-modal';
+import {toast} from 'react-toastify';
+import ReactScrollableFeed from 'react-scrollable-feed';
 import './ChatsSection.css';
 
+toast.configure();
 const ChatsSection = () =>{
 
     const {groupIconSelected, modalImage, isImageSelected, setIsImageSelected, noImage} = useContext(ValuesContext);
@@ -64,6 +67,7 @@ const ChatsSection = () =>{
     const chatSend = (e) =>{
         e.preventDefault();
         const text = messageRef.current.value;
+        if(text[0]!==" "){
         const time = (new Date).getTime().toString();
         const fullName = auth.currentUser.displayName ? auth.currentUser.displayName.split(" ")[0] : username;
         const uid = auth.currentUser.uid;
@@ -74,6 +78,9 @@ const ChatsSection = () =>{
             uid,
             user: fullName,
         })
+        }else{
+            toast.warning("Please don't start your chat with 'SPACE'. Enter a valid message",{position: toast.POSITION.TOP_CENTER});
+        }
         messageRef.current.value = '';
     }
 
@@ -126,13 +133,15 @@ const ChatsSection = () =>{
    }
 
     return(
-        <div className="chatsSection">
+        <div className="chatsSection" id="chatsSection">
         <div className="roomHeader">
         <BsArrowLeftShort className="arrowIcon" onClick={()=>{history.push("/")}}/>
         <img src={selectedRoomContent.imageURL || noImage} alt="" className="roomIcon" onClick={()=>{groupIconSelected(selectedRoomContent.imageURL)}}/>
         <h1 className="roomTitle">{title}</h1>
         </div>
         <div className="chats">
+        <ReactScrollableFeed>
+        <div className="flex flex-col">
         {chatsToBeDisplayed.map((chat)=>{
             const initialTime = parseInt(chat.time);
             const getTime = new Date(initialTime).toString();
@@ -196,6 +205,8 @@ const ChatsSection = () =>{
                 </div>
             )
         })}
+        </div>
+        </ReactScrollableFeed>
         </div>
         <form className="roomFooter" onSubmit={chatSend}>
         <input required type="text" placeholder="Type your message..." className="chatInput" ref={messageRef}/>
