@@ -43,9 +43,11 @@ const SignIn = () => {
     return (
         <div className="signInModal">
         <div className="signInModalContent">
-            <h1 className="appTitle">Welcome to Chat App</h1>
-            <h1 className="pageHeader">Sign In to your Account</h1>
-            <FcGoogle className="googleIcon" onClick={googleAuth}/>
+            <h1 className="appTitle">Chat App</h1>
+            <div className="googleSignInBtn" onClick={googleAuth}>
+            <FcGoogle className="googleIcon"/>
+            <p className="googleSignInInfo">Continue with Google</p>
+            </div>
             <p className="sectionDivider">or</p>
             <form className="signInForm" onSubmit={signInBtn}>
                 <label htmlFor="emailId" className="emailLabel">Email</label>

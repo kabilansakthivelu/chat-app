@@ -10,8 +10,14 @@
 .pageHeader, .sectionDivider{
     @apply text-center text-lg my-3
 }
+.googleSignInBtn{
+    @apply flex items-center border-2 border-green-500 h-9 rounded-md mx-auto mt-4 bg-white text-green-500 font-bold hover:bg-green-400 hover:text-white md:w-72 md:h-10 cursor-pointer
+}
 .googleIcon{
-    @apply text-3xl md:text-4xl mt-3 mx-auto cursor-pointer
+    @apply text-2xl lg:text-3xl mt-3 mx-auto mb-3
+}
+.googleSignInInfo{
+    @apply mr-4 sm:mr-8 md:mr-10
 }
 .signInForm{
     @apply flex flex-col
