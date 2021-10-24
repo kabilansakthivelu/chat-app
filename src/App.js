@@ -40,7 +40,7 @@ function App() {
 
   const [modalImage, setModalImage] = useState("");
 
-  const noImage = "https://www.searchpng.com/wp-content/uploads/2019/02/User-Icon-PNG.png";
+  const noImage = "https://us.123rf.com/450wm/tuktukdesign/tuktukdesign1608/tuktukdesign160800043/61010830-user-icon-man-profile-businessman-avatar-person-glyph-vector-illustration.jpg?ver=6";
 
   const groupIconSelected = (url) =>{
         let image = url ? url : noImage;
