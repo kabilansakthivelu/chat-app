@@ -1,9 +1,8 @@
 import React, {useState, useEffect, useRef, useContext} from 'react';
 import {auth, db} from '../../firebase';
 import {useParams, useHistory} from 'react-router-dom';
-import {BsArrowLeftShort} from 'react-icons/bs';
+import {BsArrowLeftShort, BsThreeDots} from 'react-icons/bs';
 import {IoSend} from 'react-icons/io5';
-import {AiFillCaretRight} from 'react-icons/ai';
 import {ValuesContext} from '../../App';
 import Modal from 'react-modal';
 import {toast} from 'react-toastify';
@@ -180,7 +179,7 @@ const ChatsSection = () =>{
                 {chat.id} className={divName}>
                 <div className="chatAreaHeader">
                 <h1 className="chatAreaUser">{userSent}</h1>
-                <AiFillCaretRight className={chatAreaIconEnable} onClick={()=>{showOptions(chat.id, chat.docId, chat.inputId, chat.textId)}}/>
+                <BsThreeDots className={chatAreaIconEnable} onClick={()=>{showOptions(chat.id, chat.docId, chat.inputId, chat.textId)}}/>
                 </div>
                 <input type="text" className="editChatInput" id={chat.inputId}/>
                 <h1 className="chatAreaMessage" id={chat.textId}>{chat.text}</h1>
