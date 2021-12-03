@@ -40,6 +40,14 @@ const SignIn = () => {
         }
     }
 
+    const guestLogin = () =>{
+        const email = process.env.REACT_APP_Guest_Email;
+        const password = process.env.REACT_APP_Guest_Password;
+        firebase.auth().signInWithEmailAndPassword(email,password);
+        history.push('/');
+        toast.success("Signed In successfully !!", {position: toast.POSITION.TOP_CENTER})
+    }
+
     return (
         <div className="signInModal">
         <div className="signInModalContent">
@@ -47,6 +55,9 @@ const SignIn = () => {
             <div className="googleSignInBtn" onClick={googleAuth}>
             <FcGoogle className="googleIcon"/>
             <p className="googleSignInInfo">Continue with Google</p>
+            </div>
+            <div className="guestLogin" onClick={guestLogin}>
+            <p>Guest Login</p>
             </div>
             <p className="sectionDivider">or</p>
             <form className="signInForm" onSubmit={signInBtn}>

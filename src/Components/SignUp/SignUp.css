@@ -14,10 +14,10 @@
     @apply flex flex-col
 }
 .nameLabel, .emailLabel, .pwdLabel{
-    @apply text-lg
+    @apply text-lg md:ml-4
 }
 .nameInput, .emailInput, .pwdInput{
-    @apply rounded-md pl-2 my-1
+    @apply rounded-md pl-2 my-1 md:w-80 md:h-9 md:mx-auto
 }
 .signUpBtn{
     @apply border-2 border-green-500 rounded-md w-20 mx-auto mt-2 bg-white text-green-500 font-bold hover:bg-green-400 hover:text-white
